@@ -3,3 +3,11 @@
 *.layout
 *.o
 *.win
+*debug*
+*.opensdf
+*.sdf
+*.sln
+*.suo
+ipch/*
+*.vcxproj
+*.vcxproj.filters
