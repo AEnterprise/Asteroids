@@ -18,4 +18,9 @@
 #include <tchar.h>
 
 
+#include "SpaceShip.h"
+#include "Paint.h"
+#include "Utils.h"
+
+
 // TODO: reference additional headers your program requires here
