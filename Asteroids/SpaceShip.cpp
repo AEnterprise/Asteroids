@@ -31,6 +31,14 @@ SpaceShip::SpaceShip()
 {
 	x = 250;
 	y = 250;
+	scalePoints(TOP, scale, 3);
+	scalePoints(LEFTWING, scale, 4);
+	scalePoints(RIGHTWING, scale, 4);
+	scalePoints(BODY, scale, 4);
+	movePoints(TOP, x, y, 3);
+	movePoints(LEFTWING, x, y, 4);
+	movePoints(RIGHTWING, x, y, 4);
+	movePoints(BODY, x, y, 4);
 }
 
 
@@ -45,17 +53,6 @@ void SpaceShip::render(HDC hdc) {
 	bn = CreateSolidBrush(RGB(255, 0, 0));
 	SelectObject(hdc, pn);
 	SelectObject(hdc, bn);
-
-	
-	
-	scalePoints(TOP, scale, 3);
-	scalePoints(LEFTWING, scale, 4);
-	scalePoints(RIGHTWING, scale, 4);
-	scalePoints(BODY, scale, 4);
-	movePoints(TOP, x, y, 3);
-	movePoints(LEFTWING, x, y, 4);
-	movePoints(RIGHTWING, x, y, 4);
-	movePoints(BODY, x, y, 4);
 
 	Polygon(hdc, TOP, 3);
 	bn = CreateSolidBrush(RGB(255, 255, 0));

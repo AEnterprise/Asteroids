@@ -17,6 +17,8 @@ Star::Star()
 	x = 20;
 	y = 20;
 	scale = 2;
+	movePoints(points, x, y, 8);
+	scalePoints(points, scale, 8);
 }
 
 
@@ -31,9 +33,6 @@ void Star::render(HDC hdc) {
 	bn = CreateSolidBrush(RGB(255, 255, 255));
 	SelectObject(hdc, pn);
 	SelectObject(hdc, bn);
-
-	movePoints(points, x, y, 8);
-	scalePoints(points, scale, 8);
 
 	Polygon(hdc, points, 8);
 
