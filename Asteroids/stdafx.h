@@ -21,6 +21,7 @@
 #include "SpaceShip.h"
 #include "Paint.h"
 #include "Utils.h"
+#include "Star.h"
 
 
 // TODO: reference additional headers your program requires here

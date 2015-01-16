@@ -7,4 +7,7 @@ void paint(HDC hdc) {
 	
 	SpaceShip ship;
 	ship.render(hdc);
+
+	Star star;
+	star.render(hdc);
 }
