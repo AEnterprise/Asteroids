@@ -80,6 +80,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_ASTEROIDS);
 	wcex.lpszClassName	= szWindowClass;
 	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+	wcex.hbrBackground = CreateSolidBrush(RGB(0, 0, 0));
 
 	return RegisterClassEx(&wcex);
 }
