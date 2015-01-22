@@ -25,12 +25,12 @@ POINT BODY[] {
 		{ 20, 80 },
 		{-20, 80}
 };
-float scale = 3;
+float scale = 2;
 
 SpaceShip::SpaceShip()
 {
-	x = 250;
-	y = 250;
+	x = 500;
+	y = 300;
 	scalePoints(TOP, scale, 3);
 	scalePoints(LEFTWING, scale, 4);
 	scalePoints(RIGHTWING, scale, 4);

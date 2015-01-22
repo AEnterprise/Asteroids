@@ -5,6 +5,12 @@
 #include "Asteroids.h"
 #include "Paint.h"
 
+const UINT TIMERID = 1;
+const UINT TIMERDELAY = 30;
+
+
+
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -156,6 +162,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		break;
+	case WM_CREATE:
+		SetTimer(hWnd, TIMERID, TIMERDELAY, NULL);
+		init(hWnd);
+		break;
+	case WM_TIMER:
+
+		paint(hdc);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
