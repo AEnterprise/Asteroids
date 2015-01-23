@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "Asteroids.h"
-#include "Paint.h"
 
 const UINT TIMERID = 1;
 const UINT TIMERDELAY = 30;
@@ -168,8 +167,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		init(hWnd);
 		break;
 	case WM_TIMER:
-
-		paint(hdc);
+		hdc = BeginPaint(hWnd, &ps);
+		tick(hdc);
+		InvalidateRect (hWnd, NULL, TRUE);
+		UpdateWindow (hWnd);
+		EndPaint(hWnd, &ps);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

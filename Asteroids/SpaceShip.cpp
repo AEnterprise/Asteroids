@@ -31,14 +31,6 @@ SpaceShip::SpaceShip()
 {
 	x = 500;
 	y = 300;
-	scalePoints(TOP, scale, 3);
-	scalePoints(LEFTWING, scale, 4);
-	scalePoints(RIGHTWING, scale, 4);
-	scalePoints(BODY, scale, 4);
-	movePoints(TOP, x, y, 3);
-	movePoints(LEFTWING, x, y, 4);
-	movePoints(RIGHTWING, x, y, 4);
-	movePoints(BODY, x, y, 4);
 }
 
 
@@ -47,6 +39,16 @@ SpaceShip::~SpaceShip()
 }
 
 void SpaceShip::render(HDC hdc) {
+	scalePoints(TOP, scale, 3);
+	scalePoints(LEFTWING, scale, 4);
+	scalePoints(RIGHTWING, scale, 4);
+	scalePoints(BODY, scale, 4);
+	movePoints(TOP, x, y, 3);
+	movePoints(LEFTWING, x, y, 4);
+	movePoints(RIGHTWING, x, y, 4);
+	movePoints(BODY, x, y, 4);
+
+
 	HPEN pn;
 	HBRUSH bn;
 	pn = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
@@ -64,4 +66,14 @@ void SpaceShip::render(HDC hdc) {
 	Polygon(hdc, RIGHTWING, 4);
 	DeleteObject(pn);
 	DeleteObject(bn);
+
+	movePoints(TOP, -x, -y, 3);
+	movePoints(LEFTWING, -x, -y, 4);
+	movePoints(RIGHTWING, -x, -y, 4);
+	movePoints(BODY, -x, -y, 4);
+	scalePoints(TOP, 1/scale, 3);
+	scalePoints(LEFTWING, 1/scale, 4);
+	scalePoints(RIGHTWING, 1/scale, 4);
+	scalePoints(BODY, 1/scale, 4);
+	
 }
