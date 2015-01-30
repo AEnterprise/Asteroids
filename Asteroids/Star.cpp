@@ -4,6 +4,9 @@
 int x;
 int y;
 
+HPEN pn1;
+HBRUSH bn1;
+
 POINT static points[] = {
 		{ 0, -5 },
 		{ 1, -3 },
@@ -27,12 +30,10 @@ Star::~Star()
 }
 
 void Star::render(HDC hdc) {
-	HPEN pn;
-	HBRUSH bn;
-	pn = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
-	bn = CreateSolidBrush(RGB(255, 255, 255));
-	SelectObject(hdc, pn);
-	SelectObject(hdc, bn);
+	pn1 = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
+	bn1 = CreateSolidBrush(RGB(255, 255, 255));
+	SelectObject(hdc, pn1);
+	SelectObject(hdc, bn1);
 
 	movePoints(points, x, y, 8);
 	scalePoints(points, scale, 8);
@@ -41,8 +42,8 @@ void Star::render(HDC hdc) {
 
 	scalePoints(points, 1 / scale, 8);
 	movePoints(points, -x, -y, 8);
-	DeleteObject(pn);
-	DeleteObject(bn);
+	DeleteObject(pn1);
+	DeleteObject(bn1);
 
 }
 

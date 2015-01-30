@@ -11,6 +11,7 @@ void tick() {
 	for (int t = 0; t < NUMSTARS; t++) {
 		star[t]->moveDown(height);
 	}
+	ship->tick();
 }
 
 void paint(HDC hdc) {
@@ -28,5 +29,36 @@ void init(HWND hwnd) {
 	}
 	for (int t = 0; t < NUMSTARS; t++) {
 		star[t] = new Star(rand() % width, rand() % height, rand() % 2 + 1);
+	}
+}
+
+void keydown(WPARAM wParam){
+	switch (wParam) {
+	case 'Z':
+		ship->up = true;
+		break;
+	case 'Q': 
+		ship->left = true;
+		break;
+	case 'S':
+		ship->down = true;
+		break;
+	case 'D':
+		ship->right = true;
+	}
+}
+void keyup(WPARAM wParam) {
+	switch (wParam) {
+	case 'Z':
+		ship->up = false;
+		break;
+	case 'Q':
+		ship->left = false;
+		break;
+	case 'S':
+		ship->down = false;
+		break;
+	case 'D':
+		ship->right = false;
 	}
 }

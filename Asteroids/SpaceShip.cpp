@@ -25,12 +25,19 @@ POINT static BODY[] {
 		{ 20, 80 },
 		{-20, 80}
 };
-float scale = 2;
+float scale = 1;
+
+HPEN pn;
+HBRUSH bn;
 
 SpaceShip::SpaceShip()
 {
 	x = 500;
 	y = 300;
+	up = false;
+	down = false;
+	left = false;
+	right = false;
 }
 
 
@@ -48,9 +55,6 @@ void SpaceShip::render(HDC hdc) {
 	movePoints(RIGHTWING, x, y, 4);
 	movePoints(BODY, x, y, 4);
 
-
-	HPEN pn;
-	HBRUSH bn;
 	pn = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 	bn = CreateSolidBrush(RGB(255, 0, 0));
 	SelectObject(hdc, pn);
@@ -76,4 +80,15 @@ void SpaceShip::render(HDC hdc) {
 	scalePoints(RIGHTWING, 1/scale, 4);
 	scalePoints(BODY, 1/scale, 4);
 	
+}
+
+void SpaceShip::tick() {
+	if (down)
+		y+=3;
+	if (up)
+		y-=3;
+	if (left)
+		x-=3;
+	if (right)
+		x+=3;
 }
