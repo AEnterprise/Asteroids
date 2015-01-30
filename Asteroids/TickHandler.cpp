@@ -60,5 +60,9 @@ void keyup(WPARAM wParam) {
 		break;
 	case 'D':
 		ship->right = false;
+		break;
+	case ' ':
+		ship->fire();
+		break;
 	}
 }

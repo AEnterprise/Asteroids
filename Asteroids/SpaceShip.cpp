@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "SpaceShip.h"
 
+const int NUMSHOTS = 5;
+int shotNumber;
+
+LaserShot* shots[NUMSHOTS];
+
 POINT static TOP[]{
 		{0, 0},
 		{ 20, 20 },
@@ -38,6 +43,10 @@ SpaceShip::SpaceShip()
 	down = false;
 	left = false;
 	right = false;
+	shotNumber = 0;
+	for (int t = 0; t < NUMSHOTS; t++) {
+		shots[t] = new LaserShot;
+	}
 }
 
 
@@ -46,6 +55,9 @@ SpaceShip::~SpaceShip()
 }
 
 void SpaceShip::render(HDC hdc) {
+	for (int t = 0; t < NUMSHOTS; t++) {
+		shots[t]->render(hdc);
+	}
 	scalePoints(TOP, scale, 3);
 	scalePoints(LEFTWING, scale, 4);
 	scalePoints(RIGHTWING, scale, 4);
@@ -79,6 +91,8 @@ void SpaceShip::render(HDC hdc) {
 	scalePoints(LEFTWING, 1/scale, 4);
 	scalePoints(RIGHTWING, 1/scale, 4);
 	scalePoints(BODY, 1/scale, 4);
+
+	
 	
 }
 
@@ -91,4 +105,13 @@ void SpaceShip::tick() {
 		x-=3;
 	if (right)
 		x+=3;
+	for (int t = 0; t < NUMSHOTS; t++) {
+		shots[t]->tick(x, y);
+	}
+}
+
+void SpaceShip::fire() {
+	if (shotNumber <= NUMSHOTS)
+		shots[shotNumber]->launch();
+	shotNumber++;
 }

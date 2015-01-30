@@ -21,6 +21,7 @@
 #include "SpaceShip.h"
 #include "Utils.h"
 #include "Star.h"
+#include "LaserShot.h"
 
 
 // TODO: reference additional headers your program requires here

@@ -10,5 +10,6 @@ public:
 
 	void render(HDC hdc);
 	void tick();
+	void fire();
 };
 
