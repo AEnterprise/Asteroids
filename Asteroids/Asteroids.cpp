@@ -167,11 +167,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		init(hWnd);
 		break;
 	case WM_TIMER:
-		hdc = BeginPaint(hWnd, &ps);
-		tick(hdc);
+		tick();
 		InvalidateRect (hWnd, NULL, TRUE);
 		UpdateWindow (hWnd);
-		EndPaint(hWnd, &ps);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

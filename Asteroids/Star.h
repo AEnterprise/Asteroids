@@ -12,5 +12,6 @@ public:
 	void setX(int newX);
 	void setY(int newY);
 	void setScale(float newScale);
+	void moveDown(int windowHeight);
 };
 

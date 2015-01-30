@@ -4,7 +4,7 @@
 int x;
 int y;
 
-POINT points[] = {
+POINT static points[] = {
 		{ 0, -5 },
 		{ 1, -3 },
 		{ 3, -2 },
@@ -29,7 +29,6 @@ Star::~Star()
 void Star::render(HDC hdc) {
 	HPEN pn;
 	HBRUSH bn;
-	POINT temp;
 	pn = CreatePen(PS_SOLID, 1, RGB(255, 255, 255));
 	bn = CreateSolidBrush(RGB(255, 255, 255));
 	SelectObject(hdc, pn);
@@ -57,4 +56,11 @@ void Star::setY(int newY) {
 
 void Star::setScale(float newScale) {
 	scale = newScale;
+}
+
+void Star::moveDown(int windowHeight) {
+	y++;
+	if (y > windowHeight) {
+		y = -3;
+	}
 }

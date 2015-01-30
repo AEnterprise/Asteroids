@@ -1,25 +1,25 @@
 #include "stdafx.h"
 #include "SpaceShip.h"
 
-POINT TOP[]{
+POINT static TOP[]{
 		{0, 0},
 		{ 20, 20 },
 		{ -20, 20 }};
 
-POINT LEFTWING[] {
+POINT static LEFTWING[] {
 		{-20, 50},
 		{ -40, 80 },
 		{-25, 80},
 		{-20, 70}};
 
-POINT RIGHTWING[] {
+POINT static RIGHTWING[] {
 		{20, 50},
 		{40, 80},
 		{25,80},
 		{20, 70}
 };
 
-POINT BODY[] {
+POINT static BODY[] {
 		{-20, 20},
 		{ 20, 20 },
 		{ 20, 80 },
