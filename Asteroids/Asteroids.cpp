@@ -171,12 +171,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		InvalidateRect (hWnd, NULL, TRUE);
 		UpdateWindow (hWnd);
 		break;
-	case WM_KEYDOWN:
-		keydown(wParam);
-		break;
-	case WM_KEYUP:
-		keyup(wParam);
-		break;
 	case WM_LBUTTONDOWN:
 		click();
 		break;

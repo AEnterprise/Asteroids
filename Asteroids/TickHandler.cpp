@@ -36,41 +36,6 @@ void init(HWND hwnd) {
 	initShotMananger();
 }
 
-void keydown(WPARAM wParam){
-	switch (wParam) {
-	case 'Z':
-		ship->up = true;
-		break;
-	case 'Q': 
-		ship->left = true;
-		break;
-	case 'S':
-		ship->down = true;
-		break;
-	case 'D':
-		ship->right = true;
-	}
-}
-void keyup(WPARAM wParam) {
-	switch (wParam) {
-	case 'Z':
-		ship->up = false;
-		break;
-	case 'Q':
-		ship->left = false;
-		break;
-	case 'S':
-		ship->down = false;
-		break;
-	case 'D':
-		ship->right = false;
-		break;
-	case ' ':
-		fire();
-		break;
-	}
-}
-
 void moveShip() {
 	POINT mouse;
 	GetCursorPos(&mouse);

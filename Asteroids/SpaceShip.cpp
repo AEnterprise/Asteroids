@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "SpaceShip.h"
 
-const int NUMSHOTS = 5;
 const int MAXSPEED = 6;
 
 POINT static TOP[]{
@@ -37,10 +36,6 @@ SpaceShip::SpaceShip()
 {
 	x = 500;
 	y = 300;
-	up = false;
-	down = false;
-	left = false;
-	right = false;
 }
 
 
@@ -88,14 +83,6 @@ void SpaceShip::render(HDC hdc) {
 }
 
 void SpaceShip::tick() {
-	if (down)
-		y+=3;
-	if (up)
-		y-=3;
-	if (left)
-		x-=3;
-	if (right)
-		x+=3;
 	tickShotMananger(x, y);
 }
 
