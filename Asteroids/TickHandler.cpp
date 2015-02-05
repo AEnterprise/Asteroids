@@ -12,6 +12,7 @@ void tick() {
 		star[t]->moveDown(height);
 	}
 	ship->tick();
+	moveShip();
 }
 
 void paint(HDC hdc) {
@@ -19,9 +20,11 @@ void paint(HDC hdc) {
 		star[t]->render(hdc);
 	}
 	ship->render(hdc);
+	renderShots(hdc);
 }
 
 void init(HWND hwnd) {
+	ShowCursor(false);
 	ship = new SpaceShip;
 	if (GetWindowRect(hwnd, &rect)) {
 		width = rect.right - rect.left;
@@ -30,6 +33,7 @@ void init(HWND hwnd) {
 	for (int t = 0; t < NUMSTARS; t++) {
 		star[t] = new Star(rand() % width, rand() % height, rand() % 2 + 1);
 	}
+	initShotMananger();
 }
 
 void keydown(WPARAM wParam){
@@ -62,7 +66,17 @@ void keyup(WPARAM wParam) {
 		ship->right = false;
 		break;
 	case ' ':
-		ship->fire();
+		fire();
 		break;
 	}
+}
+
+void moveShip() {
+	POINT mouse;
+	GetCursorPos(&mouse);
+	ship->moveToMouse(mouse.x - rect.left, mouse.y - rect.top - 50);
+}
+
+void click() {
+	fire();
 }

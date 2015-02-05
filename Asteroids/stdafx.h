@@ -22,6 +22,7 @@
 #include "Utils.h"
 #include "Star.h"
 #include "LaserShot.h"
+#include "ShotMananger.h"
 
 
 // TODO: reference additional headers your program requires here

@@ -1,16 +1,17 @@
 #include "stdafx.h"
 #include "LaserShot.h"
 
-float size = 10;
 HPEN pnl;
 HBRUSH bnl;
-bool flying;
+static int id, shotX, shotY;
+float size = 10;
 
-LaserShot::LaserShot()
+LaserShot::LaserShot(int shotID)
 {
-	x = 200;
-	y = 200;
 	flying = false;
+	id = shotID;
+	shotX = 200;
+	shotY= 200;
 }
 
 
@@ -25,7 +26,7 @@ void LaserShot::render(HDC hdc) {
 	bnl = CreateSolidBrush(RGB(255, 0, 0));
 	SelectObject(hdc, pnl);
 	SelectObject(hdc, bnl);
-	Ellipse(hdc, x - size, y - size, x + size, y + size);
+	Ellipse(hdc, shotX - size, shotY - size, shotX + size, shotY + size);
 	DeleteObject(pnl);
 	DeleteObject(bnl);
 
@@ -37,13 +38,13 @@ void LaserShot::launch() {
 
 void LaserShot::tick(int shipX, int shipY) {
 	if (!flying) {
-		x = shipX;
-		y = shipY;
-	}
-	y -= 2;
-	if (y < -5) {
-		flying = false;
-		x = shipX;
-		y = shipY;
+		shotX = shipX;
+		shotY = shipY;
+	} else {
+		shotY -= 6;
+		if (shotY < -5) {
+			flying = false;
+			reclaimShot(id);
+		}
 	}
 }

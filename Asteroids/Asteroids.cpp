@@ -177,6 +177,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYUP:
 		keyup(wParam);
 		break;
+	case WM_LBUTTONDOWN:
+		click();
+		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

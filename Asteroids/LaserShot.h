@@ -2,9 +2,10 @@
 class LaserShot
 {
 public:
-	LaserShot();
+	LaserShot(int id);
 	~LaserShot();
-	int x, y;
+	int shotX, shotY, id;
+	bool flying;
 	void render(HDC hdc);
 	void launch();
 	void tick(int shipX, int shipY);

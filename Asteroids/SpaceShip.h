@@ -10,6 +10,6 @@ public:
 
 	void render(HDC hdc);
 	void tick();
-	void fire();
+	void moveToMouse(int mouseX, int mouseY);
 };
 
