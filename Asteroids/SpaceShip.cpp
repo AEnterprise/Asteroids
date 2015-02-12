@@ -29,13 +29,17 @@ POINT static BODY[] {
 };
 float scale = 1;
 
-HPEN pn;
-HBRUSH bn;
+HPEN topPen;
+HBRUSH topBrush, bodyBrush, wingBrush;
 
 SpaceShip::SpaceShip()
 {
 	x = 500;
 	y = 300;
+	topPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
+	topBrush = CreateSolidBrush(RGB(255, 0, 0));
+	bodyBrush = CreateSolidBrush(RGB(255, 255, 0));
+	wingBrush = CreateSolidBrush(RGB(0, 255, 0));
 }
 
 
@@ -53,21 +57,16 @@ void SpaceShip::render(HDC hdc) {
 	movePoints(RIGHTWING, x, y, 4);
 	movePoints(BODY, x, y, 4);
 
-	pn = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
-	bn = CreateSolidBrush(RGB(255, 0, 0));
-	SelectObject(hdc, pn);
-	SelectObject(hdc, bn);
-
+	SelectObject(hdc, topPen);
+	SelectObject(hdc, topBrush);
 	Polygon(hdc, TOP, 3);
-	bn = CreateSolidBrush(RGB(255, 255, 0));
-	SelectObject(hdc, bn);
+
+	SelectObject(hdc, bodyBrush);
 	Polygon(hdc, BODY, 4);
-	bn = CreateSolidBrush(RGB(0, 255, 0));
-	SelectObject(hdc, bn);
+
+	SelectObject(hdc, wingBrush);
 	Polygon(hdc, LEFTWING, 4);
 	Polygon(hdc, RIGHTWING, 4);
-	DeleteObject(pn);
-	DeleteObject(bn);
 
 	movePoints(TOP, -x, -y, 3);
 	movePoints(LEFTWING, -x, -y, 4);

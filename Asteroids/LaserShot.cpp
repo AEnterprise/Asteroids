@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "LaserShot.h"
 
-HPEN pnl;
-HBRUSH bnl;
+HPEN pnl = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+HBRUSH bnl = CreateSolidBrush(RGB(255, 0, 0));
 static int id, shotX, shotY;
 float size = 10;
 
@@ -22,13 +22,9 @@ LaserShot::~LaserShot()
 void LaserShot::render(HDC hdc) {
 	if (!flying)
 		return;
-	pnl = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
-	bnl = CreateSolidBrush(RGB(255, 0, 0));
 	SelectObject(hdc, pnl);
 	SelectObject(hdc, bnl);
 	Ellipse(hdc, shotX - size, shotY - size, shotX + size, shotY + size);
-	DeleteObject(pnl);
-	DeleteObject(bnl);
 
 }
 
