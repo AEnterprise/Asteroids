@@ -7,7 +7,6 @@ Star* star[NUMSTARS];
 int width, height;
 RECT rect, background;
 HBRUSH backgroundBrush;
-bool showMouse = false;
 
 void tick() {
 	for (int t = 0; t < NUMSTARS; t++) {
@@ -41,10 +40,6 @@ void moveShip() {
 	POINT mouse;
 	GetCursorPos(&mouse);
 	ship->moveToMouse(mouse.x - rect.left, mouse.y - rect.top - 50);
-}
-
-void click() {
-	fire();
 }
 
 void windowResize(HWND hwnd) {

@@ -185,7 +185,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		render();
 		break;
 	case WM_LBUTTONDOWN:
-		click();
+		leftclick();
 		break;
 	case WM_WINDOWPOSCHANGED:
 		biop->Free_Buffer(0);
@@ -193,6 +193,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		biop->Initialize_Buffers(hWnd, 1);
 		biop->Create_Buffer(0);
 		windowResize(hWnd);
+		break;
+	case WM_KEYDOWN:
+		onKeyDown(wParam);
+		break;
+	case WM_KEYUP:
+		onKeyUp(wParam);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);

@@ -17,6 +17,7 @@
 #include <memory.h>
 #include <tchar.h>
 
+#include "Controling.h"
 #include "TickHandler.h"
 #include "SpaceShip.h"
 #include "Utils.h"
