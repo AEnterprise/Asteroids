@@ -7,3 +7,4 @@ void keydown(WPARAM wParam);
 void keyup(WPARAM wParam);
 void moveShip();
 void click();
+void windowResize(HWND hwnd);

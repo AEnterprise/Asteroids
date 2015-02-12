@@ -3,11 +3,14 @@
 
 #include "stdafx.h"
 #include "Asteroids.h"
+#include "Bitmap_OP.h"
+#include "Resource.h"
+
+Bitmap_Operations *biop;
+RECT recT;
 
 const UINT TIMERID = 1;
 const UINT TIMERDELAY = 30;
-
-
 
 
 #define MAX_LOADSTRING 100
@@ -130,6 +133,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY	- post a quit message and return
 //
 //
+
+void render() {
+	paint(biop->Get_DC_Buffer(0));
+	biop->Copy_to_Screen(0);
+}
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int wmId, wmEvent;
@@ -156,29 +165,41 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
-		paint(hdc);
 		EndPaint(hWnd, &ps);
 		break;
 	case WM_DESTROY:
+		biop->Free_Buffer(0);
+		delete biop;
 		PostQuitMessage(0);
 		break;
 	case WM_CREATE:
+		biop = new Bitmap_Operations();
+		GetClientRect(hWnd, &recT);
+		biop->Initialize_Buffers(hWnd, 1);
+		biop->Create_Buffer(0);
 		SetTimer(hWnd, TIMERID, TIMERDELAY, NULL);
 		init(hWnd);
 		break;
 	case WM_TIMER:
 		tick();
-		InvalidateRect (hWnd, NULL, TRUE);
-		UpdateWindow (hWnd);
+		render();
 		break;
 	case WM_LBUTTONDOWN:
 		click();
+		break;
+	case WM_WINDOWPOSCHANGED:
+		biop->Free_Buffer(0);
+		GetClientRect(hWnd, &recT);
+		biop->Initialize_Buffers(hWnd, 1);
+		biop->Create_Buffer(0);
+		windowResize(hWnd);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;
 }
+
 
 // Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

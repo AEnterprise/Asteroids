@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Star.h"
 
-int x;
-int y;
+int starX;
+int starY;
 
 HPEN pn1;
 HBRUSH bn1;
@@ -19,8 +19,8 @@ POINT static points[] = {
 
 Star::Star(int newX, int newY, float newScale)
 {
-	x = newX;
-	y = newY;
+	starX = newX;
+	starY = newY;
 	scale = newScale;
 }
 
@@ -35,33 +35,34 @@ void Star::render(HDC hdc) {
 	SelectObject(hdc, pn1);
 	SelectObject(hdc, bn1);
 
-	movePoints(points, x, y, 8);
+	movePoints(points, starX, starY, 8);
 	scalePoints(points, scale, 8);
 
 	Polygon(hdc, points, 8);
 
 	scalePoints(points, 1 / scale, 8);
-	movePoints(points, -x, -y, 8);
+	movePoints(points, -starX, -starY, 8);
 	DeleteObject(pn1);
 	DeleteObject(bn1);
 
 }
 
 void Star::setX(int newX) {
-	x = newX;
+	starX = newX;
 }
 
 void Star::setY(int newY) {
-	y = newY;
+	starY = newY;
 }
 
 void Star::setScale(float newScale) {
 	scale = newScale;
 }
 
-void Star::moveDown(int windowHeight) {
-	y++;
-	if (y > windowHeight) {
-		y = -3;
+void Star::moveDown(int windowWith, int windowHeight) {
+	starY++;
+	if (starY > windowHeight) {
+		starY = -3;
+		starX = rand() % windowWith;
 	}
 }
