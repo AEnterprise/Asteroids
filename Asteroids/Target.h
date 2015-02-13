@@ -5,10 +5,12 @@ public:
 	Target();
 	~Target();
 
-	int x, y, health;
-	float scale;
-
 	void render(HDC hdc);
 	void tick();
+	void setX(int newX);
+	void setY(int newY);
+private:
+	int x, y, health;
+	float scale;
 };
 

@@ -14,5 +14,6 @@ public:
 private:
 	int shotX, shotY, id;
 	bool flying;
+	POINT laserPoints[4];
 };
 

@@ -12,6 +12,10 @@ LaserShot::LaserShot(int shotID)
 	id = shotID;
 	shotX = 200;
 	shotY= 200;
+	laserPoints[0] = { -2, -2 };
+	laserPoints[1] = { -2, 15 };
+	laserPoints[2] = { 2, 15 };
+	laserPoints[3] = { 2, -2 };
 }
 
 
@@ -24,8 +28,9 @@ void LaserShot::render(HDC hdc) {
 		return;
 	SelectObject(hdc, pnl);
 	SelectObject(hdc, bnl);
-	Ellipse(hdc, shotX - size, shotY - size, shotX + size, shotY + size);
-
+	movePoints(laserPoints, shotX, shotY, 4);
+	Polygon(hdc, laserPoints, 4);
+	movePoints(laserPoints, -shotX, -shotY, 4);
 }
 
 void LaserShot::launch() {
@@ -42,5 +47,6 @@ void LaserShot::tick(int shipX, int shipY) {
 			flying = false;
 			reclaimShot(id);
 		}
+		a
 	}
 }
