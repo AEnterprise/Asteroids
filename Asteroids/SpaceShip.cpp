@@ -85,7 +85,15 @@ void SpaceShip::tick() {
 	tickShotMananger(x, y);
 }
 
-void SpaceShip::moveToMouse(int mouseX, int mouseY) {
+void SpaceShip::moveToMouse(int mouseX, int mouseY, RECT rect) {
+	if (mouseX < rect.left)
+		mouseX = rect.left;
+	if (mouseX > rect.right)
+		mouseX = rect.right;
+	if (mouseY < rect.top)
+		mouseY = rect.top;
+	if (mouseY > rect.bottom - 80 * scale)
+		mouseY = rect.bottom - 80 * scale;
 	int xdif = x - mouseX;
 	int ydif = y - mouseY;
 	if (xdif > MAXSPEED)

@@ -5,10 +5,12 @@ public:
 	SpaceShip();
 	~SpaceShip();
 
-	int x, y;
 
 	void render(HDC hdc);
 	void tick();
-	void moveToMouse(int mouseX, int mouseY);
+	void moveToMouse(int mouseX, int mouseY, RECT rect);
+
+private:
+	int x, y;
 };
 
