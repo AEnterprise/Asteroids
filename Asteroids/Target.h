@@ -12,9 +12,11 @@ public:
 	POINT* getPoints();
 	int getNumPoints();
 	void hit(int strength);
+	bool isAlive();
 private:
 	int x, y, health, numPoints;
 	float scale;
 	POINT points[4];
+	bool alive;
 };
 

@@ -8,3 +8,4 @@ void reclaimShot(int id);
 POINT* getShotPoints(int id);
 int getShots();
 int getStrenght();
+bool isFired(int id);

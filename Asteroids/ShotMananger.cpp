@@ -1,9 +1,10 @@
 #include "stdafx.h"
 
-const int NUMSHOTS = 50;
+const int NUMSHOTS = 5;
 
-static LaserShot* shots[NUMSHOTS];
-static bool fired[NUMSHOTS];
+LaserShot* shots[NUMSHOTS];
+bool fired[NUMSHOTS];
+int strength = 1;
 
 void initShotMananger() {
 	for (int t = 0; t < NUMSHOTS; t++) {
@@ -44,4 +45,12 @@ POINT* getShotPoints(int id){
 
 int getShots(){
 	return NUMSHOTS;
+}
+
+int getStrenght(){
+	return strength;
+}
+
+bool isFired(int id) {
+	return fired[id];
 }
