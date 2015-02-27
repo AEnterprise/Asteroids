@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 const int NUMSTARS = 60;
-const int NUMTARGETS = 1;
+const int NUMTARGETS = 2;
 
 SpaceShip* ship;
 Star* star[NUMSTARS];
@@ -16,6 +16,18 @@ void tick() {
 	}
 	ship->tick();
 	moveShip();
+	for (int t = 0; t < NUMTARGETS; t++){
+		for (int i = 0; i < getShots(); i++) {
+			POINT tempPoints[100];
+			for (int j = 0; j < targets[t]->getNumPoints(); j++){
+				tempPoints[j] = targets[t]->getPoints()[j];
+			}
+			if (hitTest(tempPoints, targets[t]->getNumPoints(), getShotPoints(i), 4)) {
+				targets[t]->hit(getStrength());
+				reclaimShot(i);
+			}
+		}
+	}
 }
 
 void paint(HDC hdc) {

@@ -47,6 +47,18 @@ void LaserShot::tick(int shipX, int shipY) {
 			flying = false;
 			reclaimShot(id);
 		}
-		a
 	}
+}
+
+void LaserShot::hit(){
+	flying = false;
+}
+
+POINT* LaserShot::getPoints(){
+	laserPoints2[0] = { -2, -2 };
+	laserPoints2[1] = { -2, 15 };
+	laserPoints2[2] = { 2, 15 };
+	laserPoints2[3] = { 2, -2 };
+	movePoints(laserPoints2, shotX, shotY, 4);
+	return laserPoints2;
 }

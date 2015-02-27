@@ -9,8 +9,12 @@ public:
 	void tick();
 	void setX(int newX);
 	void setY(int newY);
+	POINT* getPoints();
+	int getNumPoints();
+	void hit(int strength);
 private:
-	int x, y, health;
+	int x, y, health, numPoints;
 	float scale;
+	POINT points[4];
 };
 
