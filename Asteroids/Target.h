@@ -5,18 +5,20 @@ public:
 	Target();
 	~Target();
 
-	void render(HDC hdc);
-	void tick();
-	void setX(int newX);
-	void setY(int newY);
-	POINT* getPoints();
-	int getNumPoints();
-	void hit(int strength);
+	virtual void render(HDC hdc);
+	virtual void tick();
+	virtual void setX(int newX);
+	virtual void setY(int newY);
+	virtual POINT* getPoints();
+	virtual int getNumPoints();
+	virtual void hit(int strength);
 	bool isAlive();
-private:
+protected:
 	int x, y, health, numPoints;
 	float scale;
-	POINT points[4];
 	bool alive;
+private:
+	HBRUSH targetBrush;
+	POINT points[4];
 };
 

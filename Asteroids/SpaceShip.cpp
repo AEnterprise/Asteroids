@@ -3,31 +3,30 @@
 
 const int MAXSPEED = 6;
 
-POINT static TOP[]{
+POINT TOP[]{
 		{0, 0},
 		{ 20, 20 },
 		{ -20, 20 }};
 
-POINT static LEFTWING[] {
+POINT LEFTWING[] {
 		{-20, 50},
 		{ -40, 80 },
 		{-25, 80},
 		{-20, 70}};
 
-POINT static RIGHTWING[] {
+POINT RIGHTWING[] {
 		{20, 50},
 		{40, 80},
 		{25,80},
 		{20, 70}
 };
 
-POINT static BODY[] {
+POINT BODY[] {
 		{-20, 20},
 		{ 20, 20 },
 		{ 20, 80 },
 		{-20, 80}
 };
-float scale = 1;
 
 HPEN topPen;
 HBRUSH topBrush, bodyBrush, wingBrush;
@@ -36,6 +35,7 @@ SpaceShip::SpaceShip()
 {
 	x = 500;
 	y = 300;
+	scale = 1;
 	topPen = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 	topBrush = CreateSolidBrush(RGB(255, 0, 0));
 	bodyBrush = CreateSolidBrush(RGB(255, 255, 0));

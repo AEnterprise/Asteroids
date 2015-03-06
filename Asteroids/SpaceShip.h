@@ -12,5 +12,6 @@ public:
 
 private:
 	int x, y;
+	float scale;
 };
 

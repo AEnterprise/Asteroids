@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Star.h"
 
-int starX;
-int starY;
-
 HPEN starPen;
 HBRUSH starBrush;
 

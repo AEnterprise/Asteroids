@@ -26,6 +26,8 @@
 #include "LaserShot.h"
 #include "ShotMananger.h"
 #include "Target.h"
+#include "Asteroid.h"
+#include "Vars.h"
 
 
 // TODO: reference additional headers your program requires here

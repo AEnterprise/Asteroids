@@ -12,9 +12,10 @@ public:
 	void setY(int newY);
 	POINT* getPoints();
 	void hit();
+	int getStrength();
 
 private:
-	int shotX, shotY, id;
+	int shotX, shotY, id, strength;
 	bool flying;
 	POINT laserPoints[4], laserPoints2[4];
 };

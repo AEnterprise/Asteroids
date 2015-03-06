@@ -1,25 +1,19 @@
 #include "stdafx.h"
 
-const int NUMSTARS = 60;
-const int NUMTARGETS = 1;
-
-SpaceShip* ship;
-Star* star[NUMSTARS];
-Target* targets[NUMTARGETS];
 int width, height;
 RECT rect, background;
 HBRUSH backgroundBrush = CreateSolidBrush(RGB(0, 0, 0));
 
 void tick() {
-	for (int t = 0; t < NUMSTARS; t++) {
-		star[t]->moveDown(width, height);
+	for (int t = 0; t < Vars::NUMSTARS; t++) {
+		Vars::star[t]->moveDown(width, height);
 	}
-	ship->tick();
+	Vars::ship->tick();
 	moveShip();
-	for (int t = 0; t < NUMTARGETS; t++){
-		for (int i = 0; i < getShots(); i++) {
-			if (targets[t]->isAlive() && isFired(i) && hitTest(targets[t]->getPoints(), targets[t]->getNumPoints(), getShotPoints(i), 4)) {
-				targets[t]->hit(getStrenght());
+	for (int t = 0; t < Vars::NUMTARGETS; t++){
+		for (int i = 0; i < Vars::NUMSHOTS; i++) {
+			if (Vars::targets[t]->isAlive() && Vars::fired[i] && hitTest(Vars::targets[t]->getPoints(), Vars::targets[t]->getNumPoints(), Vars::shots[i]->getPoints(), 4)) {
+				Vars::targets[t]->hit(Vars::shots[i]->getStrength());
 				reclaimShot(i);
 			}
 		}
@@ -28,25 +22,25 @@ void tick() {
 
 void paint(HDC hdc) {
 	FillRect(hdc, &background, backgroundBrush);
-	for (int t = 0; t < NUMSTARS; t++) {
-		star[t]->render(hdc);
+	for (int t = 0; t < Vars::NUMSTARS; t++) {
+		Vars::star[t]->render(hdc);
 	}
-	for (int t = 0; t < NUMTARGETS; t++) {
-		targets[t]->render(hdc);
+	for (int t = 0; t < Vars::NUMTARGETS; t++) {
+		Vars::targets[t]->render(hdc);
 	}
-	ship->render(hdc);
+	Vars::ship->render(hdc);
 	renderShots(hdc);
 }
 
 void init(HWND hwnd) {
 	windowResize(hwnd);
 	ShowCursor(false);
-	ship = new SpaceShip;
-	for (int t = 0; t < NUMSTARS; t++) {
-		star[t] = new Star(rand() % width, rand() % height, rand() % 2 + 1);
+	Vars::ship = new SpaceShip;
+	for (int t = 0; t < Vars::NUMSTARS; t++) {
+		Vars::star[t] = new Star(rand() % width, rand() % height, rand() % 2 + 1);
 	}
-	for (int t = 0; t < NUMTARGETS; t++) {
-		targets[t] = new Target();
+	for (int t = 0; t < Vars::NUMTARGETS; t++) {
+		Vars::targets[t] = new Asteroid();
 	}
 	initShotMananger();
 }
@@ -54,7 +48,7 @@ void init(HWND hwnd) {
 void moveShip() {
 	POINT mouse;
 	GetCursorPos(&mouse);
-	ship->moveToMouse(mouse.x - rect.left, mouse.y - rect.top - 50, background);
+	Vars::ship->moveToMouse(mouse.x - rect.left, mouse.y - rect.top - 50, background);
 }
 
 void windowResize(HWND hwnd) {
@@ -62,11 +56,11 @@ void windowResize(HWND hwnd) {
 		width = rect.right - rect.left;
 		height = rect.bottom - rect.top;
 		GetClientRect(hwnd, &background);
-		for (int t = 0; t < NUMSTARS; t++) {
-			if (star[t] == NULL)
+		for (int t = 0; t < Vars::NUMSTARS; t++) {
+			if (Vars::star[t] == NULL)
 				continue;
-			star[t]->setX(rand() % width);
-			star[t]->setY(rand() % height);
+			Vars::star[t]->setX(rand() % width);
+			Vars::star[t]->setY(rand() % height);
 		}
 	}
 }

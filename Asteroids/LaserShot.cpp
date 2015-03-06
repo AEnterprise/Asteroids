@@ -3,8 +3,6 @@
 
 HPEN pnl = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 HBRUSH bnl = CreateSolidBrush(RGB(255, 0, 0));
-static int id, shotX, shotY;
-float size = 10;
 
 LaserShot::LaserShot(int shotID)
 {
@@ -16,6 +14,7 @@ LaserShot::LaserShot(int shotID)
 	laserPoints[1] = { -2, 15 };
 	laserPoints[2] = { 2, 15 };
 	laserPoints[3] = { 2, -2 };
+	strength = 1;
 }
 
 
@@ -61,4 +60,8 @@ POINT* LaserShot::getPoints(){
 	laserPoints2[3] = { 2, -2 };
 	movePoints(laserPoints2, shotX, shotY, 4);
 	return laserPoints2;
+}
+
+int LaserShot::getStrength() {
+	return strength;
 }

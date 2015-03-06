@@ -1,21 +1,8 @@
 #include "stdafx.h"
 #include "Target.h"
 
-HBRUSH targetBrush;
-
 Target::Target()
 {
-	x = 500;
-	y = 200;
-	targetBrush = CreateSolidBrush(RGB(255, 255, 0));
-	numPoints = 4;
-	points[0] = { -25, -25 };
-	points[1] = { -25, 25 };
-	points[2] = { 25, 25 };
-	points[3] = { 25, -25 };
-	movePoints(points, x, y, 4);
-	alive = true;
-	health = 3;
 }
 
 
